@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   appInsights: {
-    instrumentationKey: '2e753db1-1c24-4f78-8ec6-6163644f4acd' 
-  } 
+    instrumentationKey: '2e753db1-1c24-4f78-8ec6-6163644f4acd'
+  }
 };

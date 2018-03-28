@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AppInsightsService } from './appinsights.service'; 
+import { AppInsightsService } from './appinsights.service';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,6 @@ import { AppInsightsService } from './appinsights.service';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-	constructor(private appInsightsService: AppInsightsService) { 
-	}
+  constructor(private appInsightsService: AppInsightsService) {
+  }
 }
