@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfigService } from './config.service';
-
+import { AppInsights } from 'applicationinsights-js';
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +15,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import { ChangeemailComponent } from './changeemail/changeemail.component';
 import { CreateUserComponent } from './create-user/create-user.component';
+import { AppInsightsService } from './appinsights.service';
 
 const appRoutes: Routes = [
   {
@@ -77,7 +78,7 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule
   ],
-  providers: [ UserService, ConfigService ], // , AuthguardGuard
+  providers: [ UserService, ConfigService, AppInsightsService ], // , AuthguardGuard
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
