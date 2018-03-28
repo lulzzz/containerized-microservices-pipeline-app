@@ -1,6 +1,6 @@
 import { Environment } from './environment.contract';
 
 export const environment: Environment = {
-  production: true,
+  production: false,
   serviceEndpoint: '',
 };

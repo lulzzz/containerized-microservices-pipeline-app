@@ -57,3 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# angular distribution
+dist/
+
+# vsts junit code reporter
+vsts-test-results/
