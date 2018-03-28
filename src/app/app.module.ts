@@ -23,10 +23,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent,
-    children: [
-      { path: '', redirectTo: 'login'}
-    ]
+    component: DashboardComponent
   },
   {
     path: 'reset',
