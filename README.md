@@ -2,11 +2,18 @@
 
 Containerized Microservices Pipeline app built on Angular
 
-## Run the app in a container
+## Run the app in a container for development
 - (Optional) Create the  image `docker build -t login-frontend .` .
-- Run the image in a Docker container 
+- Run the image in a Docker container
     - For Windows use: `docker run -p 4200:4200 -p 49153:49153 --mount type=bind,source=%cd%,target=/usr/src/app --rm -it login-frontend`.
     - For MacOS use: `docker run -p 4200:4200 -p 49153:49153 --mount type=bind,source="${PWD}",target=/usr/src/app --rm -it login-frontend`.
+- Browse to `http://localhost:4200`.
+
+## Run app built for production in a container
+- Run `ng build --prod`. This will create the `dist` folder.
+- Create the image: `docker build -f Dockerfile-prod -t login-frontend .`
+- Run the image in a Docker container: `docker run -p 80:80 --rm -it login-frontend`.
+- Browse to `http://localhost`.
 
 ## Development server
 
