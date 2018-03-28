@@ -7,15 +7,18 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ConfigService } from '../config.service';
+import { BaseComponent } from '../base.component';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: [ './login-form.component.less' ]
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent extends BaseComponent implements OnInit {
 
-  constructor(private router: Router, private user: UserService, private configService: ConfigService) { }
+  constructor(private router: Router, private user: UserService, private configService: ConfigService) {
+    super();
+  }
 
   private config: Object;
   private email: any;
