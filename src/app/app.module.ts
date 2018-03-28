@@ -25,7 +25,7 @@ const appRoutes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     children: [
-      { path: '', redirectTo: 'login'}
+      { path: '', redirectTo: 'login', pathMatch: 'full'}
     ]
   },
   {

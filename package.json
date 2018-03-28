@@ -4,13 +4,13 @@
   "license": "MIT",
   "scripts": {
     "start": "ng serve --host 0.0.0.0 --poll",
-    "build": "ng build -dev",
+    "build": "ng build -dev -e dev",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "vsts:lint": "ng lint",
     "vsts:test": "ng test -cc -sr",
-    "vsts:build": "ng build -prod"
+    "vsts:build": "ng build -prod -e prod"
   },
   "private": true,
   "dependencies": {
