@@ -75,6 +75,6 @@ describe('ChangeemailComponent', () => {
   it('should navigate to dashboard', () => {
     spyOn((<any>component).router, 'navigate');
     component.changeEmail(trueMockEvent);
-    return expect((<any>component).router.navigate).toHaveBeenCalledWith(['dashboard']);
+    expect((<any>component).router.navigate).toHaveBeenCalledWith(['dashboard']);
   });
 });

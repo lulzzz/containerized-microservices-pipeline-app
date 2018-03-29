@@ -29,7 +29,7 @@ export class ChangeemailComponent extends BaseComponent implements OnInit {
     this.userToken = this.user.getToken();
   }
 
-  changeEmail(e: any) {
+  public changeEmail(e: any): void {
     e.preventDefault();
     if (e.target && e.target.elements) {
       this.newemail1 = e.target.elements[0].value;
@@ -44,7 +44,7 @@ export class ChangeemailComponent extends BaseComponent implements OnInit {
     }
   }
 
-  showConfig() {
+  public showConfig(): void {
     this.configService.postChangeEmail(this.newemail1, this.userToken)
       .subscribe(data => { });
     }
