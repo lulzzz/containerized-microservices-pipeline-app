@@ -4,15 +4,18 @@ import {UserService} from '../user.service';
 import { Observable } from 'rxjs/Observable';
 
 import { ConfigService } from '../config.service';
+import { BaseComponent } from '../base.component';
 
 @Component({
   selector: 'app-changeemail',
   templateUrl: './changeemail.component.html',
   styleUrls: ['./changeemail.component.less']
 })
-export class ChangeemailComponent implements OnInit {
+export class ChangeemailComponent extends BaseComponent implements OnInit {
 
-  constructor(private router: Router, private user: UserService, private configService: ConfigService) { }
+  constructor(private router: Router, private user: UserService, private configService: ConfigService) {
+    super();
+  }
 
   public message: string;
   private username = '';

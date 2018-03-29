@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BaseComponent } from '../base.component';
 
 @Component({
   selector: 'app-forgot',
   templateUrl: './forgot.component.html',
   styleUrls: [ './forgot.component.less' ]
 })
-export class ForgotComponent implements OnInit {
+export class ForgotComponent extends BaseComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    super();
+  }
 
   public message: string;
 

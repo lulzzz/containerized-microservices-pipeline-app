@@ -4,6 +4,6 @@ export const environment: Environment = {
   production: true,
   serviceEndpoint: '',
   appInsights: {
-    instrumentationKey: '2e753db1-1c24-4f78-8ec6-6163644f4acd'
+    instrumentationKey: 'e7d39fb3-9522-4298-9c12-4748fdcd6f50'
   }
 };
