@@ -3,30 +3,31 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { NotfoundComponent } from './notfound.component';
 import { UserService } from '../user.service';
+import { ConfigService } from '../config.service';
 
 describe('NotfoundComponent', () => {
   let component: NotfoundComponent;
+  let fixture: ComponentFixture<NotfoundComponent>;
 
   beforeEach(async(() => {
-    let fixture: ComponentFixture<NotfoundComponent>;
     TestBed.configureTestingModule({
       declarations: [
         NotfoundComponent ],
       imports: [
         RouterTestingModule.withRoutes([])],
       providers: [
-        UserService]
+        UserService,
+        ConfigService]
     }).compileComponents();
+  }));
 
+  beforeEach( () => {
     fixture = TestBed.createComponent(NotfoundComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
-
-  beforeEach(() => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    return expect(component).toBeTruthy();
   });
 });
