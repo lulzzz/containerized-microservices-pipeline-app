@@ -19,5 +19,4 @@ export class DashboardComponent extends BaseComponent implements OnInit {
   public ngOnInit(): void {
     this.name = 'Anonymous';
   }
-    // this.name = this.user.getUsername();
 }
