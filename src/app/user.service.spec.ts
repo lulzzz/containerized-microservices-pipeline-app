@@ -1,15 +1,32 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { Injectable } from '@angular/core';
 
-import { UserService } from './user.service';
+@Injectable()
+export class UserService {
 
-describe('UserService', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [UserService]
-    });
-  });
+  private isUserLoggedIn: boolean;
+  private username: string;
+  private password: string;
+  private token: string;
 
-  it('should be created', inject([UserService], (service: UserService) => {
-    expect(service).toBeTruthy();
-  }));
-});
+  constructor() {
+    this.isUserLoggedIn = false;
+  }
+
+  setUserLoggedIn(token: string): void {
+    this.token = token;
+    this.isUserLoggedIn = true;
+  }
+
+  getUserLoggedIn(): boolean {
+    return this.isUserLoggedIn;
+  }
+
+  public getUsername(): string {
+    return this.username;
+  }
+
+  public getToken(): string {
+    return this.token;
+  }
+
+}

@@ -3,24 +3,30 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UserService {
 
-  private isUserLoggedIn;
-  private username;
-  private password;
+  private isUserLoggedIn: boolean;
+  private username: string;
+  private password: string;
+  private token: string;
 
   constructor() {
     this.isUserLoggedIn = false;
   }
 
-  setUserLoggedIn() {
+  setUserLoggedIn(token: string): void {
+    this.token = token;
     this.isUserLoggedIn = true;
   }
 
-  getUserLoggedIn() {
+  getUserLoggedIn(): boolean {
     return this.isUserLoggedIn;
   }
 
-  public getUsername() {
+  public getUsername(): string {
     return this.username;
+  }
+
+  public getToken(): string {
+    return this.token;
   }
 
 }

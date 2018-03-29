@@ -33,7 +33,7 @@ export class CreateUserComponent extends BaseComponent implements OnInit {
     this.password1 = e.target.elements[1].value;
     this.password2 = e.target.elements[2].value;
     if (this.password1 === this.password2) {
-      this.user.setUserLoggedIn();
+      // this.user.setUserLoggedIn();
       this.router.navigate([ 'dashboard' ]);
     } else {
       this.message = 'Passwords do not match. Please try again.';

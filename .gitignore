@@ -62,3 +62,4 @@ dist/
 
 # vsts junit code reporter
 vsts-test-results/
+vsts-test-results/test.xml
