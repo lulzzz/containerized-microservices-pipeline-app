@@ -29,7 +29,7 @@ export class CreateUserComponent extends BaseComponent implements OnInit {
     this.message = '';
   }
 
-  public createUser(e: any) {
+  public createUser(e: any): void {
     e.preventDefault();
     if (e.target && e.target.elements) {
       this.username = e.target.elements[0].value;
@@ -45,7 +45,7 @@ export class CreateUserComponent extends BaseComponent implements OnInit {
     }
   }
 
-  showConfig() {
+  public showConfig(): void {
     this.configService.postCreate(this.username, this.email, this.password1)
       .subscribe((data) => {
         if (data[ 'token' ]) {
