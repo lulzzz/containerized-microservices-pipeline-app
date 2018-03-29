@@ -23,32 +23,27 @@ export class LoginFormComponent extends BaseComponent implements OnInit {
   private config: Object;
   private email: any;
   private password: string;
+  private userToken: string;
 
   public ngOnInit(): void { }
 
-  loginUser(e: any) {
+  public loginUser(e: any): void {
     e.preventDefault();
-    this.email = e.target.elements[0].value;
-    this.password = e.target.elements[1].value;
-    if (this.email === 'admin' && this.password === 'admin') {
-      // this.user.setUserLoggedIn();
+    if (e.target && e.target.elements) {
+      this.email = e.target.elements[0].value;
+      this.password = e.target.elements[1].value;
+      this.showConfig();
       this.router.navigate([ 'dashboard' ]);
-    } else {
-      this.router.navigate([ 'notfound' ]);
     }
   }
 
-  // showConfig() {
-  //   this.configService.postLogin(this.email, this.password)
-  //     .subscribe(data => this.config = {
-  //         Username: data[ 'username' ],
-  //         Password: data[ 'password' ]
-  //     });
-  //   }
-
-  // getConfigResponse(): Observable<HttpResponse<Config>> {
-  //   return this.http.get<Config>(
-  //     this.configUrl, { observe: 'response' });
-  // }
-
+  public showConfig(): void {
+    this.configService.postLogin(this.email, this.password)
+      .subscribe(data => {
+        if (data[ 'token' ]) {
+          this.userToken = data[ 'token'];
+          this.user.setUserLoggedIn(this.userToken);
+        } // TODO: add else for 401 error
+      });
+    }
 }

@@ -17,9 +17,9 @@ describe('LoginFormComponent', () => {
   let trueMockEvent;
   let falseMockEvent;
   let mockUserService;
+  let fixture: ComponentFixture<LoginFormComponent>;
 
   beforeEach(async(() => {
-    let fixture: ComponentFixture<LoginFormComponent>;
     TestBed.configureTestingModule({
       declarations: [
         LoginFormComponent,
@@ -33,15 +33,14 @@ describe('LoginFormComponent', () => {
       ],
       providers: [
         UserService,
-        ConfigService]
+        ConfigService ]
     }).compileComponents();
-
-    fixture = TestBed.createComponent(LoginFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   }));
 
   beforeEach(() => {
+    fixture = TestBed.createComponent(LoginFormComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
     mockUserService = {
       setUserLoggedIn: () => { }
     };
@@ -50,10 +49,10 @@ describe('LoginFormComponent', () => {
       preventDefault: () => {},
       target: {
         elements: [{
-          value: 'admin'
+          value: 'user1'
         },
         {
-          value: 'admin'
+          value: 'Password1'
         }],
       }
     };
@@ -78,22 +77,5 @@ describe('LoginFormComponent', () => {
     spyOn((<any>component).router, 'navigate');
     component.loginUser(trueMockEvent);
     expect((<any>component).router.navigate).toHaveBeenCalledWith([ 'dashboard' ]);
-  });
-
-  // it('should log in user', () => {
-  //   spyOn((<any>component).router, 'navigate');
-  //   component.loginUser(trueMockEvent);
-  //   expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
-  // });
-
-  it('should navigate to notfound', () => {
-    spyOn((<any>component).router, 'navigate');
-    component.loginUser(falseMockEvent);
-    expect((<any>component).router.navigate).toHaveBeenCalledWith([ 'notfound' ]);
-  });
-
-  it('should prevent default', () => {
-    component.loginUser(trueMockEvent);
-    expect(trueMockEvent.preventDefault.toHaveBeenCalled);
   });
  });
