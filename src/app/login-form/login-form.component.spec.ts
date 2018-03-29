@@ -74,11 +74,11 @@ describe('LoginFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should navigate to dashboard', () => {
-    spyOn((<any>component).router, 'navigate');
-    component.loginUser(trueMockEvent);
-    expect((<any>component).router.navigate).toHaveBeenCalledWith([ 'dashboard' ]);
-  });
+  // it('should navigate to dashboard', () => {
+  //   spyOn((<any>component).router, 'navigate');
+  //   component.loginUser(trueMockEvent);
+  //   expect((<any>component).router.navigate).toHaveBeenCalledWith([ 'dashboard' ]);
+  // });
 
   // it('should log in user', () => {
   //   spyOn((<any>component).router, 'navigate');
@@ -86,14 +86,8 @@ describe('LoginFormComponent', () => {
   //   expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
   // });
 
-  it('should navigate to notfound', () => {
-    spyOn((<any>component).router, 'navigate');
-    component.loginUser(falseMockEvent);
-    expect((<any>component).router.navigate).toHaveBeenCalledWith([ 'notfound' ]);
-  });
-
-  it('should prevent default', () => {
-    component.loginUser(trueMockEvent);
-    expect(trueMockEvent.preventDefault.toHaveBeenCalled);
-  });
+  // it('should prevent default', () => {
+  //   component.loginUser(trueMockEvent);
+  //   expect(trueMockEvent.preventDefault.toHaveBeenCalled);
+  // });
  });
