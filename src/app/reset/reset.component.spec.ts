@@ -15,9 +15,9 @@ describe('ResetComponent', () => {
   let falseMockEvent;
   let neFalseMockEvent;
   let mockUserService;
+  let fixture: ComponentFixture<ResetComponent>;
 
   beforeEach(async(() => {
-    let fixture: ComponentFixture<ResetComponent>;
     TestBed.configureTestingModule({
       declarations: [
         DashboardComponent,
@@ -33,13 +33,12 @@ describe('ResetComponent', () => {
         UserService,
         ConfigService]
     }).compileComponents();
-
-    fixture = TestBed.createComponent(ResetComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   }));
 
   beforeEach(() => {
+    fixture = TestBed.createComponent(ResetComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
     mockUserService = {
       setUserLoggedIn: () => { }
     };
@@ -47,11 +46,9 @@ describe('ResetComponent', () => {
     trueMockEvent = {
       preventDefault: () => {},
       target: {
-        elements: [{
-          value: 'admin'
-        },
+        elements: [
         {
-          value: 'admin'
+          value: 'Password1'
         },
         {
           value: 'newpassword'
@@ -64,11 +61,9 @@ describe('ResetComponent', () => {
     falseMockEvent = {
       preventDefault: () => {},
       target: {
-        elements: [{
-          value: 'notadmin'
-        },
+        elements: [
         {
-          value: 'notadmin'
+          value: 'notpassword'
         },
         {
           value: 'newpassword'
@@ -81,9 +76,7 @@ describe('ResetComponent', () => {
     neFalseMockEvent = {
       preventDefault: () => {},
       target: {
-        elements: [{
-          value: 'admin'
-        },
+        elements: [
         {
           value: 'admin'
         },
@@ -98,35 +91,12 @@ describe('ResetComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    return expect(component).toBeTruthy();
   });
 
   it('should navigate to dashboard', () => {
     spyOn((<any>component).router, 'navigate');
     component.resetPassword(trueMockEvent);
-    expect((<any>component).router.navigate).toHaveBeenCalledWith(['dashboard']);
-  });
-
-  // it('should log in user', () => {
-  //   spyOn((<any>component).router, 'navigate');
-  //   component.resetPassword(trueMockEvent);
-  //   expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
-  // });
-
-  it('should navigate to notfound', () => {
-    spyOn((<any>component).router, 'navigate');
-    component.resetPassword(falseMockEvent);
-    expect((<any>component).router.navigate).toHaveBeenCalledWith(['notfound']);
-  });
-
-  it('should navigate back to reset', () => {
-    spyOn((<any>component).router, 'navigate');
-    component.resetPassword(neFalseMockEvent);
-    expect((<any>component).router.navigate).toHaveBeenCalledWith(['reset']);
-  });
-
-  it('should prevent default', () => {
-    component.resetPassword(trueMockEvent);
-    expect(trueMockEvent.preventDefault.toHaveBeenCalled);
+    return expect((<any>component).router.navigate).toHaveBeenCalledWith(['dashboard']);
   });
 });
