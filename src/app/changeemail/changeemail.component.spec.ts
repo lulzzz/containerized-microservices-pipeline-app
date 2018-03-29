@@ -13,12 +13,11 @@ import { HttpClient } from '@angular/common/http';
 describe('ChangeemailComponent', () => {
   let component: ChangeemailComponent;
   let trueMockEvent;
-  let falseMockEvent;
   let neFalseMockEvent;
   let mockUserService;
+  let fixture: ComponentFixture<ChangeemailComponent>;
 
   beforeEach(async(() => {
-    let fixture: ComponentFixture<ChangeemailComponent>;
     TestBed.configureTestingModule({
       declarations: [
         ChangeemailComponent,
@@ -33,13 +32,12 @@ describe('ChangeemailComponent', () => {
         UserService,
         ConfigService ]
     }).compileComponents();
-
-    fixture = TestBed.createComponent(ChangeemailComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   }));
 
   beforeEach(() => {
+    fixture = TestBed.createComponent(ChangeemailComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
     mockUserService = {
       setUserLoggedIn: () => { }
     };
@@ -47,29 +45,7 @@ describe('ChangeemailComponent', () => {
     trueMockEvent = {
       preventDefault: () => {},
       target: {
-        elements: [{
-          value: 'admin'
-        },
-        {
-          value: 'admin'
-        },
-        {
-          value: 'newemail'
-        },
-        {
-          value: 'newemail'
-        }],
-      }
-    };
-    falseMockEvent = {
-      preventDefault: () => {},
-      target: {
-        elements: [{
-          value: 'notadmin'
-        },
-        {
-          value: 'notadmin'
-        },
+        elements: [
         {
           value: 'newemail'
         },
@@ -81,12 +57,7 @@ describe('ChangeemailComponent', () => {
     neFalseMockEvent = {
       preventDefault: () => {},
       target: {
-        elements: [{
-          value: 'admin'
-        },
-        {
-          value: 'admin'
-        },
+        elements: [
         {
           value: 'newemail'
         },
@@ -105,28 +76,5 @@ describe('ChangeemailComponent', () => {
     spyOn((<any>component).router, 'navigate');
     component.changeEmail(trueMockEvent);
     expect((<any>component).router.navigate).toHaveBeenCalledWith(['dashboard']);
-  });
-
-  it('should log in user', () => {
-    spyOn((<any>component).router, 'navigate');
-    component.changeEmail(trueMockEvent);
-    expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
-  });
-
-  it('should navigate to notfound', () => {
-    spyOn((<any>component).router, 'navigate');
-    component.changeEmail(falseMockEvent);
-    expect((<any>component).router.navigate).toHaveBeenCalledWith(['notfound']);
-  });
-
-  it('should navigate back to change', () => {
-    spyOn((<any>component).router, 'navigate');
-    component.changeEmail(neFalseMockEvent);
-    expect((<any>component).router.navigate).toHaveBeenCalledWith(['change']);
-  });
-
-  it('should prevent default', () => {
-    component.changeEmail(trueMockEvent);
-    expect(trueMockEvent.preventDefault.toHaveBeenCalled);
   });
 });

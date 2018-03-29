@@ -1,19 +1,17 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed, inject, async } from '@angular/core/testing';
 
 import { ConfigService } from './config.service';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ChangeEmail, CreateUser, Login, ChangePass } from './config.service';
+
 describe('ConfigService', () => {
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DashboardComponent
-      ],
       providers: [ ConfigService ],
       imports: [ HttpClientModule ]
     });
-  });
+  }));
 
   it('should be created', inject([ConfigService], (service: ConfigService) => {
     expect(service).toBeTruthy();

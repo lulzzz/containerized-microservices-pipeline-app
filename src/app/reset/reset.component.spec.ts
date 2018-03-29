@@ -107,11 +107,11 @@ describe('ResetComponent', () => {
     expect((<any>component).router.navigate).toHaveBeenCalledWith(['dashboard']);
   });
 
-  it('should log in user', () => {
-    spyOn((<any>component).router, 'navigate');
-    component.resetPassword(trueMockEvent);
-    expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
-  });
+  // it('should log in user', () => {
+  //   spyOn((<any>component).router, 'navigate');
+  //   component.resetPassword(trueMockEvent);
+  //   expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
+  // });
 
   it('should navigate to notfound', () => {
     spyOn((<any>component).router, 'navigate');

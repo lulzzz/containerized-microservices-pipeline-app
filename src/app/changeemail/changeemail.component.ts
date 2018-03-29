@@ -4,6 +4,7 @@ import {UserService} from '../user.service';
 import { Observable } from 'rxjs/Observable';
 
 import { ConfigService } from '../config.service';
+import { HttpHeaderResponse } from '@angular/common/http';
 import { BaseComponent } from '../base.component';
 
 @Component({
@@ -18,40 +19,33 @@ export class ChangeemailComponent extends BaseComponent implements OnInit {
   }
 
   public message: string;
-  private username = '';
-  private password = '';
   private newemail1 = '';
   private newemail2 = '';
   private config: Object;
+  private userToken: string;
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.message = '';
+    this.userToken = this.user.getToken();
   }
 
-  changeEmail(e: any) {
+  public changeEmail(e: any): void {
     e.preventDefault();
-    this.username = e.target.elements[0].value;
-    this.password = e.target.elements[1].value;
-    this.newemail1 = e.target.elements[2].value;
-    this.newemail2 = e.target.elements[3].value;
+    if (e.target && e.target.elements) {
+      this.newemail1 = e.target.elements[0].value;
+      this.newemail2 = e.target.elements[1].value;
 
-    if (this.username === 'admin' && this.password === 'admin') {
       if (this.newemail1 === this.newemail2) {
-        this.user.setUserLoggedIn();
+        this.showConfig();
         this.router.navigate([ 'dashboard' ]);
       } else {
         this.message = 'Your new emails do not match. Please try again.';
-        this.router.navigate([ 'change' ]);
       }
-    } else {
-      this.router.navigate([ 'notfound' ]);
     }
   }
 
-  // showConfig() {
-  //   this.configService.postChangeEmail(this.newemail1)
-  //     .subscribe(data => this.config = {
-  //         Email: data[ 'email' ]
-  //     });
-  //   }
+  public showConfig(): void {
+    this.configService.postChangeEmail(this.newemail1, this.userToken)
+      .subscribe(data => { });
+    }
 }

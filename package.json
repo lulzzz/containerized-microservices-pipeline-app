@@ -5,11 +5,11 @@
   "scripts": {
     "start": "ng serve --host 0.0.0.0 --poll",
     "build": "ng build -dev -e dev",
-    "test": "ng test",
+    "test": "ng test --sourcemaps=false",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "vsts:lint": "ng lint",
-    "vsts:test": "ng test -cc -sr",
+    "vsts:test": "ng test -cc -sr --sourcemaps=false",
     "vsts:build": "ng build -prod -e prod"
   },
   "private": true,

@@ -1,65 +1,79 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { HttpClientModule } from '@angular/common/http';
 
-// export interface ChangeEmail {
-//   email: string;
-// }
+export interface ChangeEmail {
+  email: string;
+}
 
-// export interface CreateUser {
-//   username: string;
-//   password: string;
-//   email: string;
-// }
+export interface CreateUser {
+  username: string;
+  email: string;
+  password: string;
+}
 
-// export interface Login {
-//   username: string;
-//   password: string;
-// }
+export interface Login {
+  username: string;
+  password: string;
+}
 
-// export interface ChangePass {
-//   username: string;
-//   password: string;
-// }
+export interface ChangePass {
+  password: string;
+  newpassword: string;
+}
 
 @Injectable()
 export class ConfigService {
 
-  constructor(private http: HttpClient) { }
+  // calling constructor with token is okay
+  constructor(private http: HttpClient) {
+  }
 
-  configUrl = 'localhost:5000/';
+  private configUrl = 'http://localhost:4201/';
 
-  // postChangePass(email: string, newpassword: string) {
-  //   let newpass: ChangePass = {
-  //     username: email,
-  //     password: newpassword
-  //   }
-  //   return this.http.post<ChangePass>(this.configUrl + 'api/account', newpass);
-  // }
+  public createHeader(token: string): { headers: HttpHeaders } {
+    const header = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + token
+      })
+    };
+    return header;
+  }
 
-  // postCreate(email: string, password1: string, password2: string) {
-  //   let newuser: CreateUser = {
-  //     username: email,
-  //     password: password1,
-  //     email: email,
-  //   }
-  //   return this.http.post<CreateUser>(this.configUrl + 'api/account', newuser);
-  // }
+  public postChangeEmail(email: string, token: string) {
+    const newemail: ChangeEmail = {
+      email: email
+    };
+    const header = this.createHeader(token);
+    return this.http.put<HttpHeaders>(this.configUrl + 'api/account', newemail, header);
+  }
 
-  // postLogin(email: string, password: string) {
-  //   let login: Login = {
-  //     username: email,
-  //     password: password, // Login password = input password
-  //   };
-  //   return this.http.post<Login>(this.configUrl + 'api/login', login);
-  //   // return this.http.get<Login>(this.configUrl + 'api/login');
-  // }
+  public postCreate(username: string, email: string, password1: string) {
+    const newuser: CreateUser = {
+      username: username,
+      email: email,
+      password: password1
+    };
+    return this.http.post<HttpResponse<any>>(this.configUrl + 'api/account', newuser);
+  }
 
-  // postChangeEmail(email: string) {
-  //   let newemail: ChangeEmail = {
-  //     email: email
-  //   }
-  //   return this.http.post<ChangeEmail>(this.configUrl + 'api/account', newemail);
-  // }
+  public postChangePass(oldpass: string, newpassword: string, token: string) {
+    const newpass: ChangePass = {
+      password: oldpass,
+      newpassword: newpassword
+    };
+    const header = this.createHeader(token);
+    return this.http.post<HttpResponse<any>>(this.configUrl + 'api/account', newpass, header);
+  }
+
+  public postLogin(email: string, password: string) {
+    const login: Login = {
+      username: email,
+      password: password
+    };
+    return this.http.post<HttpResponse<any>>(this.configUrl + 'api/login', login);
+  }
 }
