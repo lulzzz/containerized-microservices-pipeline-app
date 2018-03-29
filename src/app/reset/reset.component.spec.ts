@@ -15,9 +15,9 @@ describe('ResetComponent', () => {
   let falseMockEvent;
   let neFalseMockEvent;
   let mockUserService;
-  let fixture: ComponentFixture<ResetComponent>;
 
   beforeEach(async(() => {
+    let fixture: ComponentFixture<ResetComponent>;
     TestBed.configureTestingModule({
       declarations: [
         DashboardComponent,
@@ -31,15 +31,15 @@ describe('ResetComponent', () => {
       ],
       providers: [
         UserService,
-        ConfigService
-      ]
+        ConfigService]
     }).compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(ResetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  }));
+
+  beforeEach(() => {
     mockUserService = {
       setUserLoggedIn: () => { }
     };
@@ -47,9 +47,11 @@ describe('ResetComponent', () => {
     trueMockEvent = {
       preventDefault: () => {},
       target: {
-        elements: [
+        elements: [{
+          value: 'admin'
+        },
         {
-          value: 'Password1'
+          value: 'admin'
         },
         {
           value: 'newpassword'
@@ -62,9 +64,11 @@ describe('ResetComponent', () => {
     falseMockEvent = {
       preventDefault: () => {},
       target: {
-        elements: [
+        elements: [{
+          value: 'notadmin'
+        },
         {
-          value: 'notpassword'
+          value: 'notadmin'
         },
         {
           value: 'newpassword'
@@ -77,7 +81,9 @@ describe('ResetComponent', () => {
     neFalseMockEvent = {
       preventDefault: () => {},
       target: {
-        elements: [
+        elements: [{
+          value: 'admin'
+        },
         {
           value: 'admin'
         },
@@ -99,5 +105,28 @@ describe('ResetComponent', () => {
     spyOn((<any>component).router, 'navigate');
     component.resetPassword(trueMockEvent);
     expect((<any>component).router.navigate).toHaveBeenCalledWith(['dashboard']);
+  });
+
+  // it('should log in user', () => {
+  //   spyOn((<any>component).router, 'navigate');
+  //   component.resetPassword(trueMockEvent);
+  //   expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
+  // });
+
+  it('should navigate to notfound', () => {
+    spyOn((<any>component).router, 'navigate');
+    component.resetPassword(falseMockEvent);
+    expect((<any>component).router.navigate).toHaveBeenCalledWith(['notfound']);
+  });
+
+  it('should navigate back to reset', () => {
+    spyOn((<any>component).router, 'navigate');
+    component.resetPassword(neFalseMockEvent);
+    expect((<any>component).router.navigate).toHaveBeenCalledWith(['reset']);
+  });
+
+  it('should prevent default', () => {
+    component.resetPassword(trueMockEvent);
+    expect(trueMockEvent.preventDefault.toHaveBeenCalled);
   });
 });

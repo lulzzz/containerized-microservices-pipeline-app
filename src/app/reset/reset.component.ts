@@ -18,39 +18,39 @@ export class ResetComponent extends BaseComponent implements OnInit {
   }
 
   public message = '';
-  private oldpassword = '';
+  private username = '';
+  private password = '';
   private newpassword1 = '';
   private newpassword2 = '';
   private config: Object;
-  private userToken: string;
 
-  ngOnInit(): void {
-    this.userToken = this.user.getToken();
+  ngOnInit() {
   }
 
   resetPassword(e) {
     e.preventDefault();
-    if (e.target && e.target.elements) {
-      this.oldpassword = e.target.elements[0].value;
-      this.newpassword1 = e.target.elements[1].value;
-      this.newpassword2 = e.target.elements[2].value;
+    this.username = e.target.elements[0].value;
+    this.password = e.target.elements[1].value;
+    this.newpassword1 = e.target.elements[2].value;
+    this.newpassword2 = e.target.elements[3].value;
+    if (this.username === 'admin' && this.password === 'admin') {
       if (this.newpassword1 === this.newpassword2) {
-        this.showConfig();
+        // this.user.setUserLoggedIn();
         this.router.navigate([ 'dashboard' ]);
       } else {
         this.message = 'Your new passwords do not match. Please try again.';
+        this.router.navigate([ 'reset' ]);
       }
     } else {
       this.router.navigate([ 'notfound' ]);
     }
   }
 
-  showConfig() {
-    this.configService.postChangePass(this.oldpassword, this.newpassword1, this.userToken)
-      .subscribe(data => {
-        if (data[ 'token' ]) {
-          Response = data[ 'token' ];
-        }
-      });
-    }
+  // showConfig() {
+  //   this.configService.postChangePass(this.username, this.newpassword1)
+  //     .subscribe(data => this.config = {
+  //         OldPassword: data[ 'oldpass' ],
+  //         NewPassword:  data[ 'newpass' ],
+  //     });
+  //   }
 }
