@@ -80,18 +80,18 @@ describe('CreateUserComponent', () => {
    });
 
   it('should create', () => {
-    return expect(component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
   it('should prevent default', () => {
     component.createUser(trueMockEvent);
-    return expect(trueMockEvent.preventDefault.toHaveBeenCalled);
+    expect(trueMockEvent.preventDefault.toHaveBeenCalled);
   });
 
   it('should log in user', () => {
     spyOn((<any>component).router, 'navigate');
     component.createUser(trueMockEvent);
-    return expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
+    expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
   });
 
 });
