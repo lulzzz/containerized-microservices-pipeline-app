@@ -31,7 +31,8 @@ describe('ResetComponent', () => {
       ],
       providers: [
         UserService,
-        ConfigService]
+        ConfigService
+      ]
     }).compileComponents();
   }));
 
@@ -91,12 +92,12 @@ describe('ResetComponent', () => {
   });
 
   it('should create', () => {
-    return expect(component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
   it('should navigate to dashboard', () => {
     spyOn((<any>component).router, 'navigate');
     component.resetPassword(trueMockEvent);
-    return expect((<any>component).router.navigate).toHaveBeenCalledWith(['dashboard']);
+    expect((<any>component).router.navigate).toHaveBeenCalledWith(['dashboard']);
   });
 });

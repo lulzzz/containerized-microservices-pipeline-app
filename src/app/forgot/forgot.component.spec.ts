@@ -34,7 +34,7 @@ describe('ForgotComponent', () => {
     fixture.detectChanges();
   }));
 
-  beforeEach( () => {
+  beforeEach(() => {
     mockEvent = {
       preventDefault: () => {},
       target: {

@@ -17,7 +17,8 @@ describe('NotfoundComponent', () => {
         RouterTestingModule.withRoutes([])],
       providers: [
         UserService,
-        ConfigService]
+        ConfigService
+      ]
     }).compileComponents();
   }));
 

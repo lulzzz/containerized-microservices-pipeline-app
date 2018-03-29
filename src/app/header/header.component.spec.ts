@@ -18,7 +18,8 @@ describe('HeaderComponent', () => {
         RouterTestingModule.withRoutes([])],
       providers: [
         UserService,
-        ConfigService]
+        ConfigService
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);
