@@ -4,15 +4,18 @@ import {UserService} from '../user.service';
 import { Observable } from 'rxjs/Observable';
 
 import { ConfigService } from '../config.service';
+import { BaseComponent } from '../base.component';
 
 @Component({
   selector: 'app-reset',
   templateUrl: './reset.component.html',
   styleUrls: ['./reset.component.less']
 })
-export class ResetComponent implements OnInit {
+export class ResetComponent extends BaseComponent implements OnInit {
 
-  constructor(private router: Router, private user: UserService, private configService: ConfigService) { }
+  constructor(private router: Router, private user: UserService, private configService: ConfigService) {
+    super();
+  }
 
   public message = '';
   private username = '';
