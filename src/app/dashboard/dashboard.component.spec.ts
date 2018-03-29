@@ -27,6 +27,6 @@ describe('DashboardComponent', () => {
   });
 
   it('should create', () => {
-    return expect(component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 });
