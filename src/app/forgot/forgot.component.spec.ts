@@ -19,12 +19,14 @@ describe('ForgotComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         ForgotComponent,
-       DashboardComponent ],
+       DashboardComponent
+      ],
       imports: [
         RouterTestingModule.withRoutes([])],
       providers: [
         UserService,
-        ConfigService]
+        ConfigService
+      ]
     })
     .compileComponents();
     fixture = TestBed.createComponent(ForgotComponent);
@@ -32,7 +34,7 @@ describe('ForgotComponent', () => {
     fixture.detectChanges();
   }));
 
-  beforeEach(async(() => {
+  beforeEach( () => {
     mockEvent = {
       preventDefault: () => {},
       target: {
@@ -41,7 +43,7 @@ describe('ForgotComponent', () => {
         }],
       }
     };
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
