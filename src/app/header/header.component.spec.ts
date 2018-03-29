@@ -11,11 +11,14 @@ describe('HeaderComponent', () => {
   let fixture: ComponentFixture<HeaderComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
+    TestBed.configureTestingModule(
+    {
       declarations: [
-        HeaderComponent ],
+        HeaderComponent
+      ],
       imports: [
-        RouterTestingModule.withRoutes([])],
+        RouterTestingModule.withRoutes([])
+      ],
       providers: [
         UserService,
         ConfigService
