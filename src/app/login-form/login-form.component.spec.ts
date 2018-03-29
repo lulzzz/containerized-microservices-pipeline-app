@@ -17,9 +17,9 @@ describe('LoginFormComponent', () => {
   let trueMockEvent;
   let falseMockEvent;
   let mockUserService;
+  let fixture: ComponentFixture<LoginFormComponent>;
 
   beforeEach(async(() => {
-    let fixture: ComponentFixture<LoginFormComponent>;
     TestBed.configureTestingModule({
       declarations: [
         LoginFormComponent,
@@ -33,15 +33,15 @@ describe('LoginFormComponent', () => {
       ],
       providers: [
         UserService,
-        ConfigService]
+        ConfigService
+      ]
     }).compileComponents();
-
-    fixture = TestBed.createComponent(LoginFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   }));
 
   beforeEach(() => {
+    fixture = TestBed.createComponent(LoginFormComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
     mockUserService = {
       setUserLoggedIn: () => { }
     };
