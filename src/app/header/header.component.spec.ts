@@ -4,19 +4,25 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { HeaderComponent } from './header.component';
 import { UserService } from '../user.service';
+import { ConfigService } from '../config.service';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
 
   beforeEach(async(() => {
-    let fixture: ComponentFixture<HeaderComponent>;
-    TestBed.configureTestingModule({
+    TestBed.configureTestingModule(
+    {
       declarations: [
-        HeaderComponent ],
+        HeaderComponent
+      ],
       imports: [
-        RouterTestingModule.withRoutes([])],
+        RouterTestingModule.withRoutes([])
+      ],
       providers: [
-        UserService]
+        UserService,
+        ConfigService
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);
@@ -25,6 +31,9 @@ describe('HeaderComponent', () => {
   }));
 
   beforeEach(() => {
+    fixture = TestBed.createComponent(HeaderComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {

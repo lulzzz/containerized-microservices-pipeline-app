@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { UserService } from '../user.service';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { ConfigService } from '../config.service';
 
 describe('ForgotComponent', () => {
   let component: ForgotComponent;
@@ -18,11 +19,14 @@ describe('ForgotComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         ForgotComponent,
-       DashboardComponent ],
+       DashboardComponent
+      ],
       imports: [
         RouterTestingModule.withRoutes([])],
       providers: [
-        UserService]
+        UserService,
+        ConfigService
+      ]
     })
     .compileComponents();
     fixture = TestBed.createComponent(ForgotComponent);
