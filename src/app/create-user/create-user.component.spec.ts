@@ -88,10 +88,10 @@ describe('CreateUserComponent', () => {
     expect((<any>component).router.navigate).toHaveBeenCalledWith(['dashboard']);
   });
 
-  it('should log in user', () => {
-    spyOn((<any>component).router, 'navigate');
-    component.createUser(trueMockEvent);
-    expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
-  });
+  // it('should log in user', () => {
+  //   spyOn((<any>component).router, 'navigate');
+  //   component.createUser(trueMockEvent);
+  //   expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
+  // });
 
 });

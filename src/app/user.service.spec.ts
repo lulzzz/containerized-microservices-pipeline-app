@@ -12,12 +12,12 @@ export class UserService {
     this.isUserLoggedIn = false;
   }
 
-  setUserLoggedIn(token: string): void {
+  public setUserLoggedIn(token: string): void {
     this.token = token;
     this.isUserLoggedIn = true;
   }
 
-  getUserLoggedIn(): boolean {
+  public getUserLoggedIn(): boolean {
     return this.isUserLoggedIn;
   }
 

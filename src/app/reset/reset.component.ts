@@ -35,7 +35,7 @@ export class ResetComponent extends BaseComponent implements OnInit {
     this.newpassword2 = e.target.elements[3].value;
     if (this.username === 'admin' && this.password === 'admin') {
       if (this.newpassword1 === this.newpassword2) {
-        this.user.setUserLoggedIn();
+        // this.user.setUserLoggedIn();
         this.router.navigate([ 'dashboard' ]);
       } else {
         this.message = 'Your new passwords do not match. Please try again.';

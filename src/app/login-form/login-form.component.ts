@@ -31,7 +31,7 @@ export class LoginFormComponent extends BaseComponent implements OnInit {
     this.email = e.target.elements[0].value;
     this.password = e.target.elements[1].value;
     if (this.email === 'admin' && this.password === 'admin') {
-      this.user.setUserLoggedIn();
+      // this.user.setUserLoggedIn();
       this.router.navigate([ 'dashboard' ]);
     } else {
       this.router.navigate([ 'notfound' ]);
