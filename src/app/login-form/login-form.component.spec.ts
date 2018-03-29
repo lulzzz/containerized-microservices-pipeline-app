@@ -41,7 +41,7 @@ describe('LoginFormComponent', () => {
     fixture.detectChanges();
   }));
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     mockUserService = {
       setUserLoggedIn: () => { }
     };
@@ -68,7 +68,7 @@ describe('LoginFormComponent', () => {
         }],
       }
     };
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
