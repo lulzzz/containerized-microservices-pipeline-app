@@ -14,9 +14,9 @@ describe('CreateUserComponent', () => {
   let trueMockEvent;
   let falseMockEvent;
   let mockUserService;
+  let fixture: ComponentFixture<CreateUserComponent>;
 
   beforeEach(async(() => {
-    let fixture: ComponentFixture<CreateUserComponent>;
     TestBed.configureTestingModule({
       declarations: [
         CreateUserComponent,
@@ -34,20 +34,23 @@ describe('CreateUserComponent', () => {
       ]
     }).compileComponents();
 
+  }));
+
+   beforeEach(() => {
     fixture = TestBed.createComponent(CreateUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
-
-  beforeEach(() => {
     mockUserService = {
-      setUserLoggedIn: () => { }
+      setUserLoggedIn: () => {}
     };
     trueMockEvent = {
       preventDefault: () => {},
       target: {
         elements: [{
-          value: 'email'
+          value: 'user1'
+        },
+        {
+          value: 'Password1'
         },
         {
           value: 'password'
@@ -61,6 +64,9 @@ describe('CreateUserComponent', () => {
       preventDefault: () => {},
       target: {
         elements: [{
+          value: 'username'
+        },
+        {
           value: 'email'
         },
         {
@@ -71,27 +77,21 @@ describe('CreateUserComponent', () => {
         }],
       }
     };
-  });
+   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    return expect(component).toBeTruthy();
   });
 
   it('should prevent default', () => {
     component.createUser(trueMockEvent);
-    expect(trueMockEvent.preventDefault.toHaveBeenCalled);
+    return expect(trueMockEvent.preventDefault.toHaveBeenCalled);
   });
 
-  it('should navigate to dashboard', () => {
+  it('should log in user', () => {
     spyOn((<any>component).router, 'navigate');
     component.createUser(trueMockEvent);
-    expect((<any>component).router.navigate).toHaveBeenCalledWith(['dashboard']);
+    return expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
   });
-
-  // it('should log in user', () => {
-  //   spyOn((<any>component).router, 'navigate');
-  //   component.createUser(trueMockEvent);
-  //   expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
-  // });
 
 });
