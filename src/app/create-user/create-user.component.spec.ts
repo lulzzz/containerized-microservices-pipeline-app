@@ -20,11 +20,13 @@ describe('CreateUserComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         CreateUserComponent,
-        DashboardComponent
+        DashboardComponent,
+        NotfoundComponent
       ],
       imports: [
         RouterTestingModule.withRoutes([
-          { path: 'dashboard', component: DashboardComponent }
+          { path: 'dashboard', component: DashboardComponent },
+          { path: 'notfound', component: NotfoundComponent }
         ]),
         HttpClientModule
       ],
@@ -50,7 +52,7 @@ describe('CreateUserComponent', () => {
           value: 'user1'
         },
         {
-          value: 'Password1'
+          value: 'email1@email.com'
         },
         {
           value: 'password'
@@ -67,7 +69,7 @@ describe('CreateUserComponent', () => {
           value: 'username'
         },
         {
-          value: 'email'
+          value: 'email@email.com'
         },
         {
           value: 'password'

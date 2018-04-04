@@ -37,7 +37,6 @@ export class ChangeemailComponent extends BaseComponent implements OnInit {
 
       if (this.newemail1 === this.newemail2) {
         this.showConfig();
-        this.router.navigate([ 'dashboard' ]);
       } else {
         this.message = 'Your new emails do not match. Please try again.';
       }

@@ -14,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
 describe('ChangeemailComponent', () => {
   let component: ChangeemailComponent;
   let trueMockEvent;
-  let neFalseMockEvent;
+  let falseMockEvent;
   let mockUserService;
   let fixture: ComponentFixture<ChangeemailComponent>;
 
@@ -64,7 +64,7 @@ describe('ChangeemailComponent', () => {
         }],
       }
     };
-    neFalseMockEvent = {
+    falseMockEvent = {
       preventDefault: () => {},
       target: {
         elements: [
@@ -80,11 +80,5 @@ describe('ChangeemailComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should navigate to dashboard', () => {
-    spyOn((<any>component).router, 'navigate');
-    component.changeEmail(trueMockEvent);
-    expect((<any>component).router.navigate).toHaveBeenCalledWith(['dashboard']);
   });
 });

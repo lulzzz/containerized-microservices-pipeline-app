@@ -36,7 +36,6 @@ export class ResetComponent extends BaseComponent implements OnInit {
       this.newpassword2 = e.target.elements[2].value;
       if (this.newpassword1 === this.newpassword2) {
         this.showConfig();
-        this.router.navigate([ 'dashboard' ]);
       } else {
         this.message = 'Your new passwords do not match. Please try again.';
       }
@@ -48,9 +47,10 @@ export class ResetComponent extends BaseComponent implements OnInit {
   showConfig() {
     this.configService.postChangePass(this.oldpassword, this.newpassword1, this.userToken)
       .subscribe(data => {
-        if (data[ 'token' ]) {
-          Response = data[ 'token' ];
-        }
-      });
-    }
+        this.router.navigate([ 'dashboard' ]);
+      },
+    (error) => {
+      this.router.navigate([ 'notfound' ]);
+    });
+  }
 }
