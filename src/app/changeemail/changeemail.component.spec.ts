@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { UserService } from '../user.service';
 import { ChangeemailComponent } from './changeemail.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { NotfoundComponent } from '../notfound/notfound.component';
 import { ConfigService } from '../config.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
@@ -21,11 +22,20 @@ describe('ChangeemailComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         ChangeemailComponent,
-        DashboardComponent
+        DashboardComponent,
+        NotfoundComponent
       ],
       imports: [
-        RouterTestingModule.withRoutes([
-           { path: 'dashboard', component: DashboardComponent }
+        RouterTestingModule.withRoutes(
+          [
+           {
+             path: 'dashboard',
+             component: DashboardComponent
+            },
+           {
+             path: 'notfound',
+             component: NotfoundComponent
+            }
         ]),
         HttpClientModule],
       providers: [

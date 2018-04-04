@@ -31,7 +31,7 @@ export class ConfigService {
   constructor(private http: HttpClient) {
   }
 
-  private configUrl = 'http://localhost:4201/';
+  private configUrl = 'http://localhost:5000/';
 
   public createHeader(token: string): { headers: HttpHeaders } {
     const header = {
@@ -66,7 +66,7 @@ export class ConfigService {
       newpassword: newpassword
     };
     const header = this.createHeader(token);
-    return this.http.post<HttpResponse<any>>(this.configUrl + 'api/account', newpass, header);
+    return this.http.put<HttpResponse<any>>(this.configUrl + 'api/account', newpass, header);
   }
 
   public postLogin(email: string, password: string) {
@@ -75,5 +75,9 @@ export class ConfigService {
       password: password
     };
     return this.http.post<HttpResponse<any>>(this.configUrl + 'api/login', login);
+  }
+
+  public getUsername(token: string) {
+    return this.http.get<HttpResponse<any>>(this.configUrl + 'api/account');
   }
 }

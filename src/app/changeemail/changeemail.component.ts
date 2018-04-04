@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {UserService} from '../user.service';
+import { UserService } from '../user.service';
 import { Observable } from 'rxjs/Observable';
 
 import { ConfigService } from '../config.service';
@@ -46,6 +46,12 @@ export class ChangeemailComponent extends BaseComponent implements OnInit {
 
   public showConfig(): void {
     this.configService.postChangeEmail(this.newemail1, this.userToken)
-      .subscribe(data => { });
-    }
+      .subscribe(data => {
+        this.router.navigate([ 'dashboard' ]);
+      },
+      (error) => {
+        this.router.navigate([ 'notfound' ]);
+      }
+    );
+  }
 }
