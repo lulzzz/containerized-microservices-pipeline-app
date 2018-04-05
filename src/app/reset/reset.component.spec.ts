@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ResetComponent } from './reset.component';
 import { UserService } from '../user.service';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { NotfoundComponent } from '../notfound/notfound.component';
 import { ConfigService } from '../config.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
@@ -21,11 +22,13 @@ describe('ResetComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         DashboardComponent,
-        ResetComponent
+        ResetComponent,
+        NotfoundComponent
       ],
       imports: [
         RouterTestingModule.withRoutes([
-          { path: 'dashboard', component: DashboardComponent }
+          { path: 'dashboard', component: DashboardComponent },
+          { path: 'notfound', component: NotfoundComponent }
         ]),
         HttpClientModule
       ],
@@ -101,23 +104,11 @@ describe('ResetComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should navigate to dashboard', () => {
-  //   spyOn((<any>component).router, 'navigate');
-  //   component.resetPassword(trueMockEvent);
-  //   expect((<any>component).router.navigate).toHaveBeenCalledWith(['dashboard']);
-  // });
-
-  // it('should log in user', () => {
-  //   spyOn((<any>component).router, 'navigate');
-  //   component.resetPassword(trueMockEvent);
-  //   expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
-  // });
-
-  // it('should navigate to notfound', () => {
-  //   spyOn((<any>component).router, 'navigate');
-  //   component.resetPassword(falseMockEvent);
-  //   expect((<any>component).router.navigate).toHaveBeenCalledWith(['notfound']);
-  // });
+  it('should log in user', () => {
+    spyOn((<any>component).router, 'navigate');
+    component.resetPassword(trueMockEvent);
+    expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
+  });
 
   it('should prevent default', () => {
     component.resetPassword(trueMockEvent);

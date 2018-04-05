@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../base.component';
+import { ConfigService } from '../config.service';
 
 @Component({
   selector: 'app-notfound',

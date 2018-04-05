@@ -5,6 +5,7 @@ import { AppModule } from '../app.module';
 
 import { LoginFormComponent } from './login-form.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { NotfoundComponent } from '../notfound/notfound.component';
 import { UserService } from '../user.service';
 import { ConfigService } from '../config.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,11 +24,13 @@ describe('LoginFormComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         LoginFormComponent,
-        DashboardComponent
+        DashboardComponent,
+        NotfoundComponent
       ],
       imports: [
         RouterTestingModule.withRoutes([
-          { path: 'dashboard', component: DashboardComponent }
+          { path: 'dashboard', component: DashboardComponent },
+          { path: 'notfound', component: NotfoundComponent }
         ]),
         HttpClientModule
       ],
@@ -50,10 +53,10 @@ describe('LoginFormComponent', () => {
       preventDefault: () => {},
       target: {
         elements: [{
-          value: 'admin'
+          value: 'user1'
         },
         {
-          value: 'admin'
+          value: 'Password1'
         }],
       }
     };
@@ -74,20 +77,9 @@ describe('LoginFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should navigate to dashboard', () => {
-  //   spyOn((<any>component).router, 'navigate');
-  //   component.loginUser(trueMockEvent);
-  //   expect((<any>component).router.navigate).toHaveBeenCalledWith([ 'dashboard' ]);
-  // });
-
-  // it('should log in user', () => {
-  //   spyOn((<any>component).router, 'navigate');
-  //   component.loginUser(trueMockEvent);
-  //   expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
-  // });
-
-  // it('should prevent default', () => {
-  //   component.loginUser(trueMockEvent);
-  //   expect(trueMockEvent.preventDefault.toHaveBeenCalled);
-  // });
+  it('should log in user', () => {
+    spyOn((<any>component).router, 'navigate');
+    component.loginUser(trueMockEvent);
+    expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
+  });
  });

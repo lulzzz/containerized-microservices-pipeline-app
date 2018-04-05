@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { BaseComponent } from '../base.component';
+import { ConfigService } from '../config.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,8 +16,11 @@ export class DashboardComponent extends BaseComponent implements OnInit {
   }
 
   public name: string;
+  public email: string;
+  public token: string;
 
   public ngOnInit(): void {
-    this.name = 'Anonymous';
+    this.name = this.user.getUsername();
+    this.token = this.user.getToken();
   }
 }

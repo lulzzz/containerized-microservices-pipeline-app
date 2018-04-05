@@ -46,7 +46,7 @@ export class LoginFormComponent extends BaseComponent implements OnInit {
         }
       },
         (error) => {
-          // TODO: error logic
+          this.router.navigate([ 'notfound' ]);
         },
       );
     }

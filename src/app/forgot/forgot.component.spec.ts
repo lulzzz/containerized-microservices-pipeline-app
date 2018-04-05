@@ -12,10 +12,9 @@ describe('ForgotComponent', () => {
   let component: ForgotComponent;
   let mockEvent;
   const router = () => {};
-
+  let fixture: ComponentFixture<ForgotComponent>;
 
   beforeEach(async(() => {
-    let fixture: ComponentFixture<ForgotComponent>;
     TestBed.configureTestingModule({
       declarations: [
         ForgotComponent,
@@ -29,12 +28,12 @@ describe('ForgotComponent', () => {
       ]
     })
     .compileComponents();
-    fixture = TestBed.createComponent(ForgotComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   }));
 
   beforeEach(() => {
+    fixture = TestBed.createComponent(ForgotComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
     mockEvent = {
       preventDefault: () => {},
       target: {
