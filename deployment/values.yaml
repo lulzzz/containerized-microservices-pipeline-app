@@ -1,0 +1,18 @@
+# Default values for containerized-microservices-pipeline-app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+app:
+  replicaCount: 2
+  image:
+    repository: wesyaoacr.azurecr.io # ACR Login Server
+    tag: canary
+    pullPolicy: Always
+  port:
+    containerPort: 80
+  imagePullSecrets: wesyaoacr-credentials # Name of ACR Credential Secret
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 80
