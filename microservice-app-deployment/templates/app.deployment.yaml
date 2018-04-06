@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: {{ .Chart.Name }}
-        image: {{ .Values.app.image.repository }}/{{ template "containerized-microservices-pipeline-app.name" . }}:{{ .Values.app.image.tag }}
+        image: {{ .Values.app.image.repository }}/{{ .Values.app.image.imageName }}:{{ .Values.app.image.tag }}
         imagePullPolicy: {{ .Values.app.image.pullPolicy }}
         ports:
           - containerPort: {{ .Values.app.port.containerPort }}

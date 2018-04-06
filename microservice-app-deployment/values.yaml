@@ -6,6 +6,7 @@ app:
   replicaCount: 2
   image:
     repository: acrmicroserviceswestus.azurecr.io # ACR Login Server
+    imageName: containerized-microservices-pipeline-app
     tag: canary
     pullPolicy: Always
   port:
