@@ -5,12 +5,12 @@
 app:
   replicaCount: 2
   image:
-    repository: wesyaoacr.azurecr.io # ACR Login Server
+    repository: acrmicroserviceswestus.azurecr.io # ACR Login Server
     tag: canary
     pullPolicy: Always
   port:
     containerPort: 80
-  imagePullSecrets: wesyaoacr-credentials # Name of ACR Credential Secret
+  imagePullSecrets: microservices-acr-credentials # Name of ACR Credential Secret
 
 service:
   type: ClusterIP
