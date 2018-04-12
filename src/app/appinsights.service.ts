@@ -15,12 +15,28 @@ export class AppInsightsService {
         }
     }
 
-    logPageView(name?: string, url?: string, properties?: any,
-            measurements?: any, duration?: number) {
-        AppInsights.trackPageView(name, url, properties, measurements, duration);
+    public logPageView(name?: string, url?: string, properties?: { [key: string]: string },
+            measurements?: { [name: string]: number }, duration?: number) {
+        AppInsights.trackPageView(name, url, this.addGlobalProperties(properties), measurements, duration);
     }
 
-    logEvent(name: string, properties?: any, measurements?: any) {
-        AppInsights.trackEvent(name, properties, measurements);
+    public logEvent(name: string, properties?: { [key: string]: string }, measurements?: { [name: string]: number }) {
+        AppInsights.trackEvent(name, this.addGlobalProperties(properties), measurements);
+    }
+
+    public logError(error: Error, properties?: { [key: string]: string }, measurements?: { [key: string]: number }) {
+        AppInsights.trackException(error, null, this.addGlobalProperties(properties), measurements);
+    }
+
+    private addGlobalProperties(properties?: { [key: string]: string }): { [key: string]: string } {
+        // if the properties object is null, set a default
+        if (!properties) {
+            properties = {};
+        }
+  
+        // add global properties that we want to track in every log
+        properties['appVersion'] = environment.appVersion;
+  
+        return properties;
     }
 }
