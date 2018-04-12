@@ -11,7 +11,7 @@ app:
     pullPolicy: Always
   port:
     containerPort: 80
-  imagePullSecrets: microservices-acr-credentials # Name of ACR Credential Secret
+  imagePullSecrets: acr-credentials # Name of ACR Credential Secret
 
 service:
   type: ClusterIP
