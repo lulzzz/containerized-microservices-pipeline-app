@@ -43,9 +43,11 @@ export class LoginFormComponent extends BaseComponent implements OnInit {
         if (data[ 'token' ]) {
           this.userToken = data[ 'token'];
           this.user.setUserLoggedIn(this.userToken);
+          this.logEvent('User logged in', {'email': this.email});
         }
       },
         (error) => {
+          this.logError(error);
           this.router.navigate([ 'notfound' ]);
         },
       );

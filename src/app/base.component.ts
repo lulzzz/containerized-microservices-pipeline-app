@@ -16,4 +16,12 @@ export class BaseComponent {
     private logNavigation() {
         this.appInsightsService.logPageView();
     }
+
+    public logEvent(name: string, properties?: any, measurements?: any) {
+        this.appInsightsService.logEvent(name, properties, measurements);
+    }
+
+    public logError(error: Error, properties?: { [key: string]: string }, measurements?: { [key: string]: number }) {
+        this.appInsightsService.logError(error, properties, measurements);
+    }
 }
