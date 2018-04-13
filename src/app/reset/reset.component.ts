@@ -47,9 +47,11 @@ export class ResetComponent extends BaseComponent implements OnInit {
   showConfig() {
     this.configService.postChangePass(this.oldpassword, this.newpassword1, this.userToken)
       .subscribe(data => {
+        this.logEvent('Password reset.');
         this.router.navigate([ 'dashboard' ]);
       },
     (error) => {
+      this.logError(error);
       this.router.navigate([ 'notfound' ]);
     });
   }

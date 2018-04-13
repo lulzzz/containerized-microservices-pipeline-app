@@ -46,9 +46,11 @@ export class ChangeemailComponent extends BaseComponent implements OnInit {
   public showConfig(): void {
     this.configService.postChangeEmail(this.newemail1, this.userToken)
       .subscribe(data => {
+        this.logEvent('Email changed.', {'email': this.newemail1});
         this.router.navigate([ 'dashboard' ]);
       },
       (error) => {
+        this.logError(error);
         this.router.navigate([ 'notfound' ]);
       }
     );

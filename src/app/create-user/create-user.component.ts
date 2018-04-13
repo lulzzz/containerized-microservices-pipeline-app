@@ -51,9 +51,11 @@ export class CreateUserComponent extends BaseComponent implements OnInit {
         if (data[ 'token' ]) {
           this.userToken = data[ 'token'];
           this.user.setUserLoggedIn(this.userToken);
+          this.logEvent('User created.', {'email': this.email});
         }
       },
       (error) => {
+        this.logError(error);
         this.router.navigate([ 'notfound' ]);
       },
     );
