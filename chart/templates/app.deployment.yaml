@@ -1,10 +1,10 @@
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
-  name: {{ template "containerized-microservices-pipeline-app.fullname" . }}
+  name: {{ template "containerized-microservices-pipeline-app.fullname" . }}-deployment
   labels:
     app: {{ template "containerized-microservices-pipeline-app.name" . }}
-    chart: {{ template "containerized-microservices-pipeline-app.chart" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
