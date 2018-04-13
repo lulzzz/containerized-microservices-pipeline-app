@@ -33,10 +33,10 @@ export class AppInsightsService {
         if (!properties) {
             properties = {};
         }
-  
+
         // add global properties that we want to track in every log
         properties['appVersion'] = environment.appVersion;
-  
+
         return properties;
     }
 }
