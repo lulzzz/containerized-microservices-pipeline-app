@@ -30,7 +30,3 @@ Create chart name and version as used by the chart label.
 {{- define "containerized-microservices-pipeline-app.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
-
-{{- define "containerized-microservices-pipeline-app.basename" -}}
-{{ .Release.Name | trimPrefix "canary-" | trimPrefix "stable-" }}-{{ .Chart.Name }}
-{{- end -}}
