@@ -3,7 +3,7 @@ apiVersion: extensions/v1beta1
 metadata:
   name: {{ template "containerized-microservices-pipeline-app.fullname" . }}-deployment
   labels:
-    app: {{ template "containerized-microservices-pipeline-app.basename" . }}
+    app: {{ .Values.appName }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -11,12 +11,12 @@ spec:
   replicas: {{ .Values.app.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "containerized-microservices-pipeline-app.basename" . }}
+      app: {{ .Values.appName }}
       release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ template "containerized-microservices-pipeline-app.basename" . }}
+        app: {{ .Values.appName }}
         release: {{ .Release.Name }}
     spec:
       containers:
