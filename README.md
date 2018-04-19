@@ -2,6 +2,16 @@
 
 Containerized Microservices Pipeline app built on Angular
 
+## Development Dependencies
+In order to develop/run this app, you will need to install the following:
+- Docker
+    - [Windows](https://www.docker.com/docker-windows)
+    - [Mac](https://www.docker.com/docker-mac)
+- Node
+    - [v8 latest](https://nodejs.org/en/)
+- Angular CLI
+    - ```npm install -g @angular/cli```
+
 ## Run the app in a container for development
 - (Optional) Create the  image `docker build -t app .` .
 - Run the image in a Docker container
