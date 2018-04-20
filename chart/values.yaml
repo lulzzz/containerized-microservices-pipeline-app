@@ -2,10 +2,12 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+appName: login-app
+
 app:
   replicaCount: 2
   image:
-    repository: acrmicroserviceswestus.azurecr.io # ACR Login Server
+    repository: acrmicrok8eastus.azurecr.io # ACR Login Server
     imageName: containerized-microservices-pipeline-app
     tag: canary
     pullPolicy: Always

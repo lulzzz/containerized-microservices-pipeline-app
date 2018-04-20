@@ -1,11 +1,11 @@
+{{ if eq .Values.app.image.tag "canary" -}}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "containerized-microservices-pipeline-app.fullname" . }}-service
+  name: {{ .Values.appName }}-service
   labels:
-    app: {{ template "containerized-microservices-pipeline-app.name" . }}
+    app: {{ .Values.appName }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
   type: {{ .Values.service.type }}
@@ -15,5 +15,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: {{ template "containerized-microservices-pipeline-app.name" . }}
-    release: {{ .Release.Name }}
+    app: {{ .Values.appName }}
+{{- end }}
