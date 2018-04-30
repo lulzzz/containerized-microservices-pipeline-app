@@ -3,6 +3,7 @@
 # Declare variables to be passed into your templates.
 
 appName: login-app
+env: stable
 
 app:
   replicaCount: 2
@@ -12,7 +13,9 @@ app:
     tag: canary
     pullPolicy: Always
   port:
+    name: http
     containerPort: 80
+    protocol: TCP
   imagePullSecrets: acr-credentials # Name of ACR Credential Secret
 
 service:

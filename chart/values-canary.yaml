@@ -1,0 +1,10 @@
+# Canary values for containerized-microservices-pipeline-app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+env: canary
+
+app:
+  replicaCount: 1
+  image:
+    tag: canary
