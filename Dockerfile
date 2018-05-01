@@ -1,12 +1,20 @@
-FROM node:8.10.0
+FROM node:8.10.0 as build
 
 WORKDIR /usr/src/app
-COPY package*.json ./
 
+# Run install as a separate step for caching
+COPY package*.json ./
 RUN npm install
-RUN npm install -g --no-optional @angular/cli
+
+# Copy everything else
 COPY . .
 
-EXPOSE 4200 49153
+# lint, test, build
+RUN npm run vsts:lint & \
+npm run vsts:test & \
+npm run vsts:build
 
-CMD [ "npm", "start" ]
+# Build final image
+FROM nginx:1.13
+COPY --from=build /usr/src/app/dist /usr/share/nginx/html
+EXPOSE 80 443

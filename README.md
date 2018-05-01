@@ -3,6 +3,7 @@
 Containerized Microservices Pipeline app built on Angular
 
 ## Development Prerequisites
+
 In order to develop/run this app, you will need to install the following:
 
 ### Install Docker
@@ -24,16 +25,17 @@ In order to develop/run this app, you will need to install the following:
 ```npm install -g @angular/cli```
 
 ## Run the app in a container for development
-- (Optional) Create the  image `docker build -t app .` .
+
+- Create the Docker image: `docker build -f Dockerfile-Dev -t app:dev .`
 - Run the image in a Docker container
-    - For Windows use: `docker run -p 4200:4200 -p 49153:49153 --mount type=bind,source=%cd%,target=/usr/src/app --rm -it app`.
-    - For MacOS use: `docker run -p 4200:4200 -p 49153:49153 --mount type=bind,source="${PWD}",target=/usr/src/app --rm -it app`.
+  - For Windows use: `docker run -it --rm -p 4200:4200 -p 49153:49153 --mount type=bind,source=%cd%,target=/usr/src/app app:dev`
+  - For MacOS use: `docker run -it --rm -p 4200:4200 -p 49153:49153 --mount type=bind,source="${PWD}",target=/usr/src/app app:dev`
 - Browse to `http://localhost:4200`.
 
 ## Run app built for production in a container
-- Run `ng build --prod`. This will create the `dist` folder.
-- Create the image: `docker build -f Dockerfile-prod -t app .`
-- Run the image in a Docker container: `docker run -p 80:80 --rm -it app`.
+
+- Create the Docker image: `docker build -t app:prod .`
+- Run the image in a Docker container: `docker run -it --rm -p 80:80 app:prod`.
 - Browse to `http://localhost`.
 
 ## Development server
@@ -77,7 +79,7 @@ git push -u origin feature-branch-name
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.microsoft.com.
+the rights to use your contribution. For details, visit [https://cla.microsoft.com](https://cla.microsoft.com).
 
 When you submit a pull request, a CLA-bot will automatically determine whether you need to provide
 a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions
