@@ -20,4 +20,11 @@ tiller-deploy-677436516-cq73w                   1/1       Running   0          2
 
 # Deploy App Helm Chart onto Cluster
 1. Ensure Azure Container Registry Credentials are deployed onto your cluster
-2. Run ```helm install ./kubernetes/containerized-microservices-pipeline-app```
+2. Install the helm chart
+    ```
+    helm install . -n <app-chart-name>
+    ```
+    **Note**: Use the relative path if you are running from the root directory.
+    ```
+    helm install /chart -n login-app
+    ```
