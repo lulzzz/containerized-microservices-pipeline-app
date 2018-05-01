@@ -1,12 +1,11 @@
-{{ if eq .Values.app.image.tag "canary" -}}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.appName }}-service
+  name: {{ .Values.appName }}-{{ .Values.env }}-svc
   labels:
     app: {{ .Values.appName }}
+    env: {{ .Values.env }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    heritage: {{ .Release.Service }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -16,4 +15,6 @@ spec:
       name: http
   selector:
     app: {{ .Values.appName }}
-{{- end }}
+    {{ if eq .Values.env "canary" -}}
+    env: {{ .Values.env }}
+    {{- end }}

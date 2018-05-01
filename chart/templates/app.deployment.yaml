@@ -1,29 +1,36 @@
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
-  name: {{ template "containerized-microservices-pipeline-app.fullname" . }}-deployment
+  name: "{{ .Values.appName }}-{{ .Values.env }}"
   labels:
     app: {{ .Values.appName }}
+    env: {{ .Values.env }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    version: {{ .Values.app.image.tag }}
 spec:
   replicas: {{ .Values.app.replicaCount }}
   selector:
     matchLabels:
       app: {{ .Values.appName }}
-      release: {{ .Release.Name }}
+      env: {{ .Values.env }}
   template:
     metadata:
       labels:
         app: {{ .Values.appName }}
+        env: {{ .Values.env }}
         release: {{ .Release.Name }}
+        version: {{ .Values.app.image.tag }}
     spec:
       containers:
       - name: {{ .Chart.Name }}
         image: {{ .Values.app.image.repository }}/{{ .Values.app.image.imageName }}:{{ .Values.app.image.tag }}
         imagePullPolicy: {{ .Values.app.image.pullPolicy }}
         ports:
-          - containerPort: {{ .Values.app.port.containerPort }}
+          - name: {{ .Values.app.port.name }}
+            containerPort: {{ .Values.app.port.containerPort }}
+            protocol: {{ .Values.app.port.protocol }}
+        resources:
+{{ toYaml .Values.resources | indent 12 }}
       imagePullSecrets:
       - name: {{ .Values.app.imagePullSecrets }}
