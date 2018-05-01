@@ -7,6 +7,7 @@ metadata:
     env: {{ .Values.env }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
+    version: {{ .Values.app.image.tag }}
 spec:
   replicas: {{ .Values.app.replicaCount }}
   selector:
@@ -19,6 +20,7 @@ spec:
         app: {{ .Values.appName }}
         env: {{ .Values.env }}
         release: {{ .Release.Name }}
+        version: {{ .Values.app.image.tag }}
     spec:
       containers:
       - name: {{ .Chart.Name }}
