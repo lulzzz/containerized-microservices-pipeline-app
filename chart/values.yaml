@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 appName: login-app
-env: stable
+env: production
 
 app:
   replicaCount: 2
