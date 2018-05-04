@@ -1,4 +1,4 @@
-# Containerizer Microservice Pipeline App
+# Containerized Microservice Pipeline App
 
 # Install Helm Client (helm)
 1. Run ```brew install kubernetes-helm```
