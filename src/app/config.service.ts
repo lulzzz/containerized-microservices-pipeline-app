@@ -3,7 +3,7 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { HttpClientModule } from '@angular/common/http';
-import { environment } from '../environments/environment'
+import { environment } from '../environments/environment';
 
 export interface ChangeEmail {
   email: string;
