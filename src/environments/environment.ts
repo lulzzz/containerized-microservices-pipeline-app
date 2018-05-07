@@ -3,10 +3,13 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
-export const environment = {
-  production: false,
+import { Environment } from './environment.contract';
+
+export const environment: Environment = {
+  production: true,
+  serviceEndpoint: '',
   appInsights: {
-    instrumentationKey: 'e7d39fb3-9522-4298-9c12-4748fdcd6f50'
+    instrumentationKey: ''
   },
   appVersion: ''
 };

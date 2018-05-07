@@ -26,6 +26,7 @@ In order to develop/run this app, you will need to install the following:
 
 ## Run the app in a container for development
 
+- Note: This app relies on the [login API microservice](https://github.com/Microsoft/containerized-microservices-pipeline-service) to be running locally. Follow [these instructions](https://github.com/Microsoft/containerized-microservices-pipeline-service#run-the-login-service-in-a-container) to run the API locally.
 - Create the Docker image: `docker build -f Dockerfile-Dev -t app:dev .`
 - Run the image in a Docker container
   - For Windows use: `docker run -it --rm -p 4200:4200 -p 49153:49153 --mount type=bind,source=%cd%,target=/usr/src/app app:dev`
