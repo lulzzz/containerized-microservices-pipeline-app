@@ -9,6 +9,7 @@ describe('containerized-microservices-pipeline App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    const mockTitle = 'Welcome to Test Login Service!';
+    expect(page.getParagraphText()).toEqual(mockTitle);
   });
 });
