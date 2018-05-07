@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
+  serviceEndpoint: 'http://localhost:4201/',
   appInsights: {
     instrumentationKey: 'e7d39fb3-9522-4298-9c12-4748fdcd6f50'
   },

@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { HttpClientModule } from '@angular/common/http';
+import { environment } from '../environments/environment'
 
 export interface ChangeEmail {
   email: string;
@@ -31,7 +32,7 @@ export class ConfigService {
   constructor(private http: HttpClient) {
   }
 
-  private configUrl = 'http://localhost:5000/';
+  private configUrl = environment.serviceEndpoint;
 
   public createHeader(token: string): { headers: HttpHeaders } {
     const header = {
