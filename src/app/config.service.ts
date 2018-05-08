@@ -37,7 +37,7 @@ export class ConfigService {
 
   // calling constructor with token is okay
   constructor(private http: HttpClient) {
-    // this.configUrl = environment.serviceEndpoint;
+    this.configUrl = environment.serviceEndpoint;
   }
 
   private configUrl = '';
@@ -52,7 +52,7 @@ export class ConfigService {
     return header;
   }
 
-  public postChangeEmail(email: string, token: string) {
+  public postChangeEmail(email: string, token: string): Observable<HttpHeaders> {
     const newemail: ChangeEmail = {
       email: email
     };
@@ -86,7 +86,7 @@ export class ConfigService {
     return this.http.post<HttpResponse<LoginResponse>>(this.configUrl + 'api/login', login);
   }
 
-  public getUsername(token: string) {
-    return this.http.get<HttpResponse<any>>(this.configUrl + 'api/account');
+  public getUsername(token: string): Observable<HttpResponse<string>> {
+    return this.http.get<HttpResponse<string>>(this.configUrl + 'api/account');
   }
 }
