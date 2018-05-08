@@ -7,17 +7,18 @@ import { LoginFormComponent } from './login-form.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { NotfoundComponent } from '../notfound/notfound.component';
 import { UserService } from '../user.service';
-import { ConfigService } from '../config.service';
-import { HttpClientModule } from '@angular/common/http';
+import { ConfigService, LoginResponse } from '../config.service';
+import { HttpClient, HttpClientModule, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 
 describe('LoginFormComponent', () => {
   let component: LoginFormComponent;
   let trueMockEvent;
   let falseMockEvent;
   let mockUserService;
+  let mockResponse;
   let fixture: ComponentFixture<LoginFormComponent>;
 
   beforeEach(async(() => {
@@ -77,9 +78,30 @@ describe('LoginFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  // it('should log in user', () => {
+  //   spyOn((<any>component).router, 'navigate');
+  //   component.loginUser(trueMockEvent);
+  //   expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
+  // });
+
   it('should log in user', () => {
-    spyOn((<any>component).router, 'navigate');
+    const fakeObservable = Observable.create(
+      (observer) => {
+        mockResponse = new HttpResponse<LoginResponse>();
+        const loginResponse: LoginResponse = {
+          token: 'mockToken',
+          userName: 'mockUserName',
+          id: 'mockId',
+          email: 'mockEmail',
+        };
+        mockResponse.body = loginResponse;
+        observer.next(mockResponse.body);
+        observer.complete();
+      });
+
+    spyOn((<any>component).user, 'setUserLoggedIn');
+    spyOn((<any>component).configService, 'postLogin').and.returnValue(fakeObservable);
     component.loginUser(trueMockEvent);
-    expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
+    expect((<any>component).user.setUserLoggedIn).toHaveBeenCalled();
   });
  });

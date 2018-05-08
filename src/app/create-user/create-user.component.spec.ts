@@ -43,11 +43,6 @@ describe('CreateUserComponent', () => {
     fixture = TestBed.createComponent(CreateUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    // mockConfigService.postCreate = jasmine.createSpy('mockPostCreate');
-
-    // mockConfigService = {
-    //   postCreate: () => {}
-    // };
     mockUserService = {
       setUserLoggedIn: () => {}
     };
@@ -96,12 +91,9 @@ describe('CreateUserComponent', () => {
     expect(trueMockEvent.preventDefault.toHaveBeenCalled);
   });
 
-  // NOTE: This will fail right now as is
   it('should log in user', () => {
-    // spyOn((<any>component).router, 'navigate');
     const fakeObservable = Observable.create(
       (observer) => {
-        // observer
         mockResponse = new HttpResponse<LoginResponse>();
         const loginResponse: LoginResponse = {
           token: 'mockToken',
@@ -112,10 +104,8 @@ describe('CreateUserComponent', () => {
         mockResponse.body = loginResponse;
         observer.next(mockResponse.body);
         observer.complete();
-        // return mockResponse;
       });
 
-    console.log(component);
     spyOn((<any>component).user, 'setUserLoggedIn');
     spyOn((<any>component).configService, 'postCreate').and.returnValue(fakeObservable);
     component.createUser(trueMockEvent);
