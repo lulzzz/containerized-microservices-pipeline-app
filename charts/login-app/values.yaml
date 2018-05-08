@@ -9,12 +9,12 @@ app:
   replicaCount: 2
   image:
     # Container registry URL (ACR, DockerHub)
-    repository: # <ENTER YOUR CONTAINER REGISTRY URL> ie yourregistry.azurecr.io
+    repository: acrmicrok8eastus.azurecr.io
     # Container image name
-    imageName: # <ENTER YOUR CONTAINER IMAGE NAME> ie login-app
+    imageName: containerized-microservices-pipeline-app
     # Container image tag
     # override on cli using --set app.image.tag=<version>
-    tag: # <ENTER YOUR TAG> ie 1.0.0
+    tag: "1.0.1"
     pullPolicy: Always
   port:
     name: http
