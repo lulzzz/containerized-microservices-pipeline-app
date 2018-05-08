@@ -25,12 +25,19 @@ export interface ChangePass {
   newpassword: string;
 }
 
+export interface LoginResponse {
+  Token: string;
+  Id: string;
+  UserName: string;
+  Email: string;
+}
+
 @Injectable()
 export class ConfigService {
 
   // calling constructor with token is okay
   constructor(private http: HttpClient) {
-    this.configUrl = environment.serviceEndpoint;
+    // this.configUrl = environment.serviceEndpoint;
   }
 
   private configUrl = '';
@@ -53,13 +60,13 @@ export class ConfigService {
     return this.http.put<HttpHeaders>(this.configUrl + 'api/account', newemail, header);
   }
 
-  public postCreate(username: string, email: string, password1: string) {
+  public postCreate(username: string, email: string, password1: string): Observable<HttpResponse<LoginResponse>> {
     const newuser: CreateUser = {
       username: username,
       email: email,
       password: password1
     };
-    return this.http.post<HttpResponse<any>>(this.configUrl + 'api/account', newuser);
+    return this.http.post<HttpResponse<LoginResponse>>(this.configUrl + 'api/account', newuser);
   }
 
   public postChangePass(oldpass: string, newpassword: string, token: string) {
@@ -71,12 +78,12 @@ export class ConfigService {
     return this.http.put<HttpResponse<any>>(this.configUrl + 'api/account', newpass, header);
   }
 
-  public postLogin(email: string, password: string) {
+  public postLogin(email: string, password: string): Observable<HttpResponse<LoginResponse>> {
     const login: Login = {
       username: email,
       password: password
     };
-    return this.http.post<HttpResponse<any>>(this.configUrl + 'api/login', login);
+    return this.http.post<HttpResponse<LoginResponse>>(this.configUrl + 'api/login', login);
   }
 
   public getUsername(token: string) {
