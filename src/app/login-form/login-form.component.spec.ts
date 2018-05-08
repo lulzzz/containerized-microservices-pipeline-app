@@ -78,12 +78,6 @@ describe('LoginFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should log in user', () => {
-  //   spyOn((<any>component).router, 'navigate');
-  //   component.loginUser(trueMockEvent);
-  //   expect(mockUserService.setUserLoggedIn.toHaveBeenCalled);
-  // });
-
   it('should log in user', () => {
     const fakeObservable = Observable.create(
       (observer) => {
