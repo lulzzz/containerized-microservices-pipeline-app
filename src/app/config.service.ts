@@ -26,10 +26,10 @@ export interface ChangePass {
 }
 
 export interface LoginResponse {
-  Token: string;
-  Id: string;
-  UserName: string;
-  Email: string;
+  token: string;
+  id: string;
+  userName: string;
+  email: string;
 }
 
 @Injectable()
