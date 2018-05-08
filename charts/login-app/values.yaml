@@ -8,25 +8,30 @@ env: production
 app:
   replicaCount: 2
   image:
-    repository: acrmicrok8eastus.azurecr.io # ACR Login Server
-    imageName: containerized-microservices-pipeline-app
-    tag: "1.0.1" # override on cli using --set app.image.tag=<version>
+    # Container registry URL (ACR, DockerHub)
+    repository: # <ENTER YOUR CONTAINER REGISTRY URL> ie yourregistry.azurecr.io
+    # Container image name
+    imageName: # <ENTER YOUR CONTAINER IMAGE NAME> ie login-app
+    # Container image tag
+    # override on cli using --set app.image.tag=<version>
+    tag: # <ENTER YOUR TAG> ie 1.0.0
     pullPolicy: Always
   port:
     name: http
     containerPort: 80
     protocol: TCP
-  imagePullSecrets: acr-credentials # Name of ACR Credential Secret
+  # Name of container registry pull secret
+  imagePullSecrets: acr-credentials 
 
 service:
   type: ClusterIP
   port: 80
   targetPort: 80
 
-# The following Pod has two Containers. 
 # Each Container has a request of 0.25 cpu and 64MiB (226 bytes) of memory. 
 # Each Container has a limit of 0.5 cpu and 128MiB of memory. 
-# You can say the Pod has a request of 0.5 cpu and 128 MiB of memory, and a limit of 1 cpu and 256MiB of memory.
+# If a Pod has two containers, you can say the Pod has a request of 0.5 cpu 
+# and 128 MiB of memory, and a limit of 1 cpu and 256MiB of memory.
 resources:
   requests:
     memory: "64Mi"

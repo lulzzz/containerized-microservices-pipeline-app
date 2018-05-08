@@ -39,6 +39,10 @@ In order to develop/run this app, you will need to install the following:
 - Run the image in a Docker container: `docker run -it --rm -p 80:80 app:prod`.
 - Browse to `http://localhost`.
 
+## Deploy to Kubernetes
+
+[Deploy to Kubernetes using Helm](/charts/login-app/README.md)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
