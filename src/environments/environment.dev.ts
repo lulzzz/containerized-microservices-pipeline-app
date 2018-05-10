@@ -2,7 +2,7 @@ import { Environment } from './environment.contract';
 
 export const environment: Environment = {
   production: false,
-  serviceEndpoint: 'http://microk8.trafficmanager.net/',
+  serviceEndpoint: 'https://microk8s.microservices.cse.trafficmanager.net/',
   appInsights: {
     instrumentationKey: ''
   },
