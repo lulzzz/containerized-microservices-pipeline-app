@@ -52,12 +52,12 @@ export class ConfigService {
     return header;
   }
 
-  public postChangeEmail(email: string, token: string): Observable<HttpHeaders> {
+  public postChangeEmail(email: string, token: string): Observable<HttpResponse<LoginResponse>> {
     const newemail: ChangeEmail = {
       email: email
     };
     const header = this.createHeader(token);
-    return this.http.put<HttpHeaders>(this.configUrl + 'api/account', newemail, header);
+    return this.http.put<HttpResponse<LoginResponse>>(this.configUrl + 'api/account', newemail, header);
   }
 
   public postCreate(username: string, email: string, password1: string): Observable<HttpResponse<LoginResponse>> {
