@@ -38,7 +38,6 @@ export class CreateUserComponent extends BaseComponent implements OnInit {
       this.password2 = e.target.elements[3].value;
       if (this.password1 === this.password2) {
         this.showConfig();
-        this.router.navigate([ 'dashboard' ]);
       } else {
         this.message = 'Passwords do not match. Please try again.';
       }
@@ -52,11 +51,12 @@ export class CreateUserComponent extends BaseComponent implements OnInit {
           this.userToken = data[ 'token'];
           this.user.setUserLoggedIn(this.userToken);
           this.logEvent('User created.', {'email': this.email});
+          this.router.navigate([ 'dashboard' ]);
         }
       },
       (error) => {
         this.logError(error);
-        this.router.navigate([ 'notfound' ]);
+        this.message = 'Create user failed: ' + error.error;
       },
     );
   }
