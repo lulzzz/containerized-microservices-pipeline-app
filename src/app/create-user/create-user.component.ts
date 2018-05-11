@@ -56,7 +56,7 @@ export class CreateUserComponent extends BaseComponent implements OnInit {
       },
       (error) => {
         this.logError(error);
-        this.message = "Create user failed. " + error.error;
+        this.message = 'Create user failed: ' + error.error;
       },
     );
   }
